@@ -1,0 +1,5 @@
+Иванов Олег Сергеевич;+890999999;TEmail@example.example
+Иванов Иван Иванович;+890999999;someEmail@example.example
+Иванов Сергей Владимирович;+890999999;REmail@example.example
+Петров Олег Иванович;+890999999;mail@example.example
+Иванов Олег Владимир;+890999999;Email@example.example
