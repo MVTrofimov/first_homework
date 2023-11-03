@@ -1,16 +1,47 @@
 package org.example;
 
-import java.io.IOException;
+import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-public interface Repository {
+@Component
+public class Repository {
 
-    public void add(String userInformation);
+    private final Map<String, String> contactsJournal = new HashMap<>();
 
-    public void delete(String email);
+    public void add(String userInformation) {
+        String[] line = userInformation.split(";");
+        contactsJournal.put(line[2], userInformation);
+    }
 
-    public void showAll();
-    public void loadToFile() throws IOException;
-    public boolean containsKey(String element);
+    public void delete(String email) {
+        contactsJournal.remove(email);
+    }
+
+    public void showAll() {
+        for (String k : contactsJournal.keySet()){
+            System.out.println(contactsJournal.get(k));
+        }
+    }
+
+    public Set<String> keySet(){
+        return contactsJournal.keySet();
+    }
+
+    public String get(String email){
+        return contactsJournal.get(email);
+    }
+
+    public void put(String key, String value){
+        contactsJournal.put(key, value);
+    }
+
+    public boolean containsKey(String element) {
+        return contactsJournal.containsKey(element);
+    }
+
+
 
 }

@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.config.AppConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -13,17 +10,22 @@ import java.io.InputStreamReader;
 @Component
 public class Runner {
 
+
+    private final FileManager fileManager;
+
     private final Repository repository;
 
+
     @Autowired
-    public Runner(Repository repository) {
+    public Runner(FileManager fileManager, Repository repository) {
+        this.fileManager = fileManager;
         this.repository = repository;
     }
 
     public void start() throws IOException {
 
-        if (repository instanceof InitRepository){
-            ((InitRepository) repository).initializationFromFile();
+        if (fileManager instanceof InitFileManager){
+            ((InitFileManager) fileManager).initializationFromFile();
         }
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -69,15 +71,10 @@ public class Runner {
             } else if (choice == 3) {
                 repository.showAll();
             } else if (choice == 4){
-                repository.loadToFile();
+                fileManager.loadToFile();
             } else if (choice == 5) {
                 break;
             }
-
-
-
-
-
         }
 
 

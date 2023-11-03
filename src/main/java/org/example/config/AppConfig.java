@@ -11,10 +11,4 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application.properties")
 public class AppConfig {
 
-    @Value("${spring.profiles.active}")
-    String nameOfConfig;
-
-    public String getNameOfConfig() {
-        return nameOfConfig;
-    }
 }
